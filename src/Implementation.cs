@@ -5,8 +5,6 @@ namespace AnkleSupport
 {
     public class Implementation : MelonMod
     {
-        private const float ANKLE_TOUGHNESS_FACTOR = 2f;
-        private const float WRIST_TOUGHNESS_FACTOR = 4f;
 
         private static float chanceOfWristSprainWhenMoving;
         private static float ankleBaseFallChance;
@@ -18,6 +16,7 @@ namespace AnkleSupport
         public override void OnApplicationStart()
         {
             Debug.Log($"[{Info.Name}] version {Info.Version} loaded!");
+            AS_Settings.OnLoad();
         }
 
         internal static void Initialize()
@@ -67,7 +66,7 @@ namespace AnkleSupport
         {
             SprainedAnkle sprainedAnkle = GameManager.GetSprainedAnkleComponent();
             float toughness = GetShoesToughness();
-            float chanceReduction = toughness * ANKLE_TOUGHNESS_FACTOR;
+            float chanceReduction = toughness * AS_Settings.settings.BootToughnessFactor;
 
             ankleMoveChanceReduction = chanceReduction;
             sprainedAnkle.m_ChanceSprainAfterFall = ankleBaseFallChance - chanceReduction;
@@ -77,7 +76,7 @@ namespace AnkleSupport
         {
             SprainedWrist sprainedWrist = GameManager.GetSprainedWristComponent();
             float toughness = GetGlovesToughness();
-            float chanceReduction = toughness * WRIST_TOUGHNESS_FACTOR;
+            float chanceReduction = toughness * AS_Settings.settings.GloveToughnessFactor;
 
             wristMoveChanceReduction = chanceReduction;
             sprainedWrist.m_ChanceSprainAfterFall = wristBaseFallChance - chanceReduction;
