@@ -33,7 +33,12 @@ namespace AnkleSupport
     [HarmonyPatch(typeof(Sprains), "RollForSprainWhenMoving", new[] { typeof(float) })]
     internal static class Sprains_RollForSprainWhenMoving
     {
-        private static void Prefix(Sprains __instance, ref float sprainChance) {
+        private static void Prefix(Sprains __instance, ref float sprainChance)
+        {
+            //!delete
+            MelonLoader.MelonLogger.Log("----Sprains_RollForSprainWhenMoving----");
+            MelonLoader.MelonLogger.Log("1sprainChance: {0}", sprainChance);
+
             if (Mathf.Approximately(sprainChance, 0f)) return;
 
             if (Implementation.ShouldRollForWristSprain())
@@ -46,6 +51,26 @@ namespace AnkleSupport
                 Implementation.AdjustAnkleSprainMoveChance(ref sprainChance);
                 __instance.m_ChanceOfWristSprainWhenMoving = 0.0f;
             }
+            //!delete
+            MelonLoader.MelonLogger.Log("----Sprains_RollForSprainWhenMoving----");
+            MelonLoader.MelonLogger.Log("2sprainChance: {0}", sprainChance);
+        }
+    }
+    [HarmonyPatch(typeof(Sprains), "MaybeSprainWhileMoving")]
+    internal static class Sprains_MaybeSprainWhileMoving
+    {
+        private static void Prefix(Sprains __instance)
+        {
+            //!delete
+            MelonLoader.MelonLogger.Log("----Sprains_MaybeSprainWhileMoving----");
+            MelonLoader.MelonLogger.Log("1 encumbrance: {0}, exhaustion: {1}", __instance.m_ChanceIncreaseEncumbered, __instance.m_ChanceIncreaseExhausted);
+
+            float overEncumbranceInKg = GameManager.GetEncumberComponent().m_GearWeightKG - GameManager.GetEncumberComponent().GetEffectiveCarryCapacityKG();
+            __instance.m_ChanceIncreaseEncumbered = Mathf.Max(0.3f, AS_Settings.settings.OverEncumbranceValue * overEncumbranceInKg);
+            __instance.m_ChanceIncreaseExhausted = AS_Settings.settings.ExhaustedValue;
+
+            //!delete
+            MelonLoader.MelonLogger.Log("2 encumbrance: {0}, exhaustion: {1}", __instance.m_ChanceIncreaseEncumbered, __instance.m_ChanceIncreaseExhausted);
         }
     }
 }
