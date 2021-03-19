@@ -7,7 +7,7 @@ It is based on [Ankle-Support](https://github.com/zeobviouslyfakeacc/Ankle-Suppo
 
 ## Description
 
-Sprains in *The Long Dark* are based on slope. A common sprain risk is can be around 30%. The base game calculates certain factors to it, like sprinting or crouching, and when you are over-encumbered or exhausted. However, they added a total amount of 0.3% for over-encumbered or exhausted instead of the supposed 30%. So basically there is no penalty for being exhausted or over-encumbered a the moment. This mod fixes the problem with new configurable options in the mod settings. In addition to this and with the permission of [zeobviouslyfakeacc](https://github.com/zeobviouslyfakeacc) I added all the functionality of ankle support and made them also configurable. I.e. you can now add wrist protection and ankle protection to gloves or boots, respectively.
+Sprains in *The Long Dark* are based on slope. A common sprain risk is can be around 30%. The base game calculates certain factors to it, like sprinting or crouching, and when you are over-encumbered or exhausted. However, they added a total amount of 0.3% for over-encumbered or exhausted instead of the supposed 30%. So basically there is no penalty for being exhausted or over-encumbered a the moment. This mod fixes the problem with new configurable options in the mod settings. In addition to this and with the permission of [zeobviouslyfakeacc](https://github.com/zeobviouslyfakeacc) I added all the functionality of ankle-support and made them also configurable. I.e. you can now add wrist protection and ankle protection to gloves or boots, respectively.
 
 ## Settings
 
